@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isostática Lab - Laboratório Virtual de Análise Estrutural</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">📐 Isostática Lab</h1>
+                <p class="tagline">Laboratório Virtual de Análise Estrutural</p>
+            </div>
+            <nav class="header-nav">
+                <button id="btn-help" class="btn-icon" title="Ajuda">❓</button>
+                <button id="btn-settings" class="btn-icon" title="Configurações">⚙️</button>
+            </nav>
+        </header>
+
+```
+    <div class="main-layout">
+        <!-- Sidebar Esquerda -->
+        <aside class="sidebar sidebar-left">
+            <div class="panel">
+                <h3>Tipo de Estrutura</h3>
+                <div class="button-group">
+                    <button class="btn-structure" data-type="beam">🔲 Viga</button>
+                    <button class="btn-structure" data-type="frame">📦 Pórtico</button>
+                    <button class="btn-structure" data-type="grill">⊞ Grelha</button>
+                    <button class="btn-structure" data-type="arch">⌒ Arco</button>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>Ferramentas</h3>
+                <div class="button-group vertical">
+                    <button id="tool-node" class="btn-tool active" data-tool="node">+ Nó</button>
+                    <button id="tool-beam" class="btn-tool" data-tool="beam">— Barra</button>
+                    <button id="tool-delete" class="btn-tool" data-tool="delete">✕ Deletar</button>
+                    <button id="tool-select" class="btn-tool" data-tool="select">✓ Selecionar</button>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>Vínculos</h3>
+                <div class="button-group vertical">
+                    <button class="btn-support" data-type="free">○ Livre</button>
+                    <button class="btn-support" data-type="roller">⊕ Móvel</button>
+                    <button class="btn-support" data-type="pinned">⊙ Articulado</button>
+                    <button class="btn-support" data-type="fixed">■ Engastado</button>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>Exemplos</h3>
+                <select id="examples-select" class="select-input">
+                    <option value="">Selecione um exemplo...</option>
+                    <option value="beam-point">Viga com carga pontual</option>
+                    <option value="beam-distributed">Viga com carga distribuída</option>
+                    <option value="frame-simple">Pórtico simples</option>
+                    <option value="grill-square">Grelha quadrada</option>
+                </select>
+            </div>
+
+            <div class="panel">
+                <h3>Ações</h3>
+                <div class="button-group vertical">
+                    <button id="btn-calculate" class="btn-primary">▶ Calcular</button>
+                    <button id="btn-clear" class="btn-secondary">🗑 Limpar</button>
+                    <button id="btn-export" class="btn-secondary">📥 Exportar</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Área Central -->
+        <main class="main-content">
+            <div class="canvas-container">
+                <canvas id="canvas" width="1000" height="600"></canvas>
+                <div class="canvas-info">
+                    <span id="cursor-pos">X: 0.00 m | Y: 0.00 m</span>
+                    <span id="structure-info">Nós: 0 | Barras: 0 | Apoios: 0</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- Sidebar Direita -->
+        <aside class="sidebar sidebar-right">
+            <div class="panel">
+                <h3>Cargas</h3>
+                <div class="form-group">
+                    <label>Tipo</label>
+                    <select id="load-type" class="select-input">
+                        <option value="point">Pontual</option>
+                        <option value="distributed">Distribuída</option>
+                        <option value="moment">Momento</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Magnitude (kN)</label>
+                    <input type="number" id="load-magnitude" value="10" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>Direção (°)</label>
+                    <input type="number" id="load-direction" value="-90" step="1" min="0" max="360">
+                </div>
+                <div class="form-group">
+                    <label>Posição (m)</label>
+                    <input type="number" id="load-position" value="0" step="0.1">
+                </div>
+                <button id="btn-add-load" class="btn-primary">+ Adicionar Carga</button>
+            </div>
+
+            <div class="panel">
+                <h3>Propriedades</h3>
+                <div class="form-group">
+                    <label>Escala: 1:</label>
+                    <input type="number" id="scale-input" value="100" step="10">
+                </div>
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="grid-toggle" checked>
+                    <label for="grid-toggle">Mostrar grid</label>
+                </div>
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="snap-toggle" checked>
+                    <label for="snap-toggle">Snap to grid</label>
+                </div>
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="coords-toggle" checked>
+                    <label for="coords-toggle">Mostrar coordenadas</label>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>Diagrama</h3>
+                <div class="button-group vertical">
+                    <button class="btn-diagram" data-diagram="N">Normal (N)</button>
+                    <button class="btn-diagram active" data-diagram="V">Cortante (V)</button>
+                    <button class="btn-diagram active" data-diagram="M">Momento (M)</button>
+                    <button class="btn-diagram" data-diagram="T">Torção (T)</button>
+                    <button class="btn-diagram" data-diagram="deformed">Deformada</button>
+                </div>
+            </div>
+
+            <div class="panel results-panel">
+                <h3>Resultados</h3>
+                <div id="results-content" class="results-content">
+                    <p class="placeholder">Clique em "Calcular" para ver os resultados</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Modal de Tutorial -->
+    <div id="tutorial-modal" class="modal hidden">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2>Tutorial Interativo</h2>
+            <div id="tutorial-steps">
+                <div class="tutorial-step">
+                    <h3>1️⃣ Adicione Nós</h3>
+                    <p>Clique no botão "+ Nó" e depois clique no canvas para criar pontos.</p>
+                </div>
+                <div class="tutorial-step">
+                    <h3>2️⃣ Conecte com Barras</h3>
+                    <p>Selecione "— Barra" e clique em dois nós para conectá-los.</p>
+                </div>
+                <div class="tutorial-step">
+                    <h3>3️⃣ Adicione Apoios</h3>
+                    <p>Selecione um tipo de apoio e clique em um nó para aplicar.</p>
+                </div>
+                <div class="tutorial-step">
+                    <h3>4️⃣ Aplique Cargas</h3>
+                    <p>Configure a carga e clique em "Adicionar Carga" (selecione a barra antes).</p>
+                </div>
+                <div class="tutorial-step">
+                    <h3>5️⃣ Calcule</h3>
+                    <p>Clique em "▶ Calcular" para analisar a estrutura.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="document.getElementById('tutorial-modal').classList.add('hidden')">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Resultados -->
+    <div id="results-modal" class="modal hidden">
+        <div class="modal-content modal-large">
+            <button class="modal-close">&times;</button>
+            <h2>Detalhes dos Resultados</h2>
+            
+            <div class="results-tabs">
+                <button class="tab-btn active" data-tab="reactions">Reações</button>
+                <button class="tab-btn" data-tab="forces">Esforços</button>
+                <button class="tab-btn" data-tab="extremes">Extremos</button>
+                <button class="tab-btn" data-tab="equations">Equações</button>
+            </div>
+
+            <div id="tab-reactions" class="tab-content active">
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Apoio</th>
+                            <th>Fx (kN)</th>
+                            <th>Fy (kN)</th>
+                            <th>M (kN·m)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reactions-tbody">
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="tab-forces" class="tab-content">
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Barra</th>
+                            <th>Tipo</th>
+                            <th>Máximo</th>
+                            <th>Mínimo</th>
+                            <th>Posição (m)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="forces-tbody">
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="tab-extremes" class="tab-content">
+                <div id="extremes-content"></div>
+            </div>
+
+            <div id="tab-equations" class="tab-content">
+                <div id="equations-content"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-primary" id="btn-export-detailed">📥 Exportar Detalhado</button>
+                <button class="btn-secondary" onclick="document.getElementById('results-modal').classList.add('hidden')">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/utils/Constants.js"></script>
+<script src="js/utils/Math.js"></script>
+<script src="js/core/Node.js"></script>
+<script src="js/core/Beam.js"></script>
+<script src="js/core/Load.js"></script>
+<script src="js/core/Support.js"></script>
+<script src="js/core/Structure.js"></script>
+<script src="js/analysis/Solver.js"></script>
+<script src="js/analysis/BeamAnalyzer.js"></script>
+<script src="js/analysis/FrameAnalyzer.js"></script>
+<script src="js/analysis/GrillAnalyzer.js"></script>
+<script src="js/visualization/CanvasRenderer.js"></script>
+<script src="js/visualization/DiagramDrawer.js"></script>
+<script src="js/utils/Export.js"></script>
+<script src="js/ui/UIManager.js"></script>
+<script src="js/app.js"></script>
+```
+
+</body>
+</html>
