@@ -1,0 +1,115 @@
+# ARQUIVO: .gitignore
+
+# Dependency directories
+
+node_modules/
+npm-debug.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Production
+
+dist/
+build/
+out/
+
+# IDE
+
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+*~
+.sublime-project
+.sublime-workspace
+*.iml
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Environment variables
+
+.env
+.env.local
+.env.*.local
+
+# Coverage
+
+coverage/
+.nyc_output/
+*.lcov
+
+# Test results
+
+test-results/
+junit.xml
+xunit.xml
+
+# Logs
+
+logs/
+*.log
+
+# Temporary files
+
+tmp/
+temp/
+*.tmp
+*.bak
+
+# OS
+
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Documentation
+
+docs/api/
+!docs/
+
+# Misc
+
+.cache/
+*.local
+.next/
+.nuxt/
+dist/
+.cache/
+.vuepress/dist/
+.serverless/
+.fusebox/
+.dynamodb/
+.env.test
+.tern-port
+
+# GitHub Pages
+
+_site/
+
+# Build artifacts
+
+*.tgz
+*.tar.gz
+*.zip
+
+# Uncomment if you prefer not to commit lock files
+
+# package-lock.json
+
+# yarn.lock
+
+# Generated documentation
+
+docs/api/
