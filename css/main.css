@@ -7,6 +7,8 @@ ISOSTÁTICA LAB - ESTILOS PRINCIPAIS
   box-sizing: border-box;
   }
 
+
+
 :root {
 /* Cores Primárias */
 –color-primary: #2196F3;
@@ -65,13 +67,11 @@ font-family: ‘Segoe UI’, ‘Roboto’, ‘Oxygen’, ‘Ubuntu’, ‘Cantar
 background-color: var(–color-bg);
 color: var(–color-text);
 line-height: 1.6;
+overflow-x: scroll;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-overflow: hidden;
-}
 
 /* Links */
 a {
