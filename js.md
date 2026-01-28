@@ -4,7 +4,7 @@
 
 ```
 isoestatica-lab/
-├── src/
+├── js/
 │   ├── core/
 │   │   ├── Node.js              # Classe de nó estrutural
 │   │   ├── Beam.js              # Classe de barra/elemento
