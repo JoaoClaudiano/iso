@@ -1,0 +1,474 @@
+/* ============================================
+ISOSTÁTICA LAB - ESTILOS RESPONSIVOS
+============================================ */
+
+/* ============================================
+TABLETS (768px - 1024px)
+============================================ */
+
+@media (max-width: 1024px) {
+.sidebar {
+width: 240px;
+padding: 0.75rem;
+}
+
+.panel {
+padding: 0.75rem;
+}
+
+.panel h3 {
+font-size: 0.85rem;
+margin-bottom: 0.5rem;
+}
+
+.button-group {
+gap: 0.4rem;
+}
+
+.form-group {
+margin-bottom: 0.75rem;
+}
+
+.btn-primary,
+.btn-secondary {
+padding: 0.6rem 1rem;
+font-size: 0.9rem;
+}
+}
+
+/* ============================================
+TABLETS PEQUENOS (768px)
+============================================ */
+
+@media (max-width: 768px) {
+.main-layout {
+flex-direction: column;
+}
+
+.sidebar {
+width: 100%;
+height: auto;
+border-right: none;
+border-bottom: 1px solid var(–color-border);
+flex-direction: row;
+overflow-x: auto;
+overflow-y: visible;
+padding: 0.5rem;
+gap: 0.5rem;
+}
+
+.sidebar-left {
+border-right: none;
+border-bottom: 1px solid var(–color-border);
+}
+
+.sidebar-right {
+border-left: none;
+border-top: 1px solid var(–color-border);
+max-height: 300px;
+}
+
+.panel {
+flex-shrink: 0;
+min-width: 200px;
+padding: 0.5rem;
+}
+
+.main-content {
+flex: 1;
+min-height: 400px;
+}
+
+.header {
+flex-direction: column;
+align-items: flex-start;
+padding: 1rem;
+gap: 1rem;
+}
+
+.header-nav {
+width: 100%;
+justify-content: flex-end;
+}
+
+.modal-content {
+max-width: 90vw;
+padding: 1.5rem;
+}
+
+.modal-content.modal-large {
+max-width: 95vw;
+}
+}
+
+/* ============================================
+CELULAR (480px - 768px)
+============================================ */
+
+@media (max-width: 480px) {
+.logo {
+font-size: 1.4rem;
+}
+
+.tagline {
+display: none;
+}
+
+.sidebar {
+height: auto;
+max-height: 250px;
+overflow-x: auto;
+overflow-y: visible;
+}
+
+.panel {
+min-width: 150px;
+padding: 0.4rem;
+}
+
+.panel h3 {
+font-size: 0.75rem;
+margin-bottom: 0.3rem;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-structure,
+.btn-tool,
+.btn-support,
+.btn-diagram {
+padding: 0.5rem 0.6rem;
+font-size: 0.8rem;
+min-width: 60px;
+}
+
+.form-group input,
+.form-group select {
+padding: 0.5rem;
+font-size: 0.85rem;
+}
+
+.form-group label {
+font-size: 0.75rem;
+}
+
+.results-table {
+font-size: 0.8rem;
+}
+
+.results-table th,
+.results-table td {
+padding: 0.5rem;
+}
+
+.canvas-info {
+padding: 0.5rem;
+font-size: 0.75rem;
+}
+
+.modal-content {
+padding: 1rem;
+}
+
+.modal-close {
+font-size: 1.2rem;
+}
+
+.tutorial-step {
+margin-bottom: 1rem;
+padding-bottom: 1rem;
+}
+
+.tutorial-step h3 {
+font-size: 1rem;
+}
+
+.tutorial-step p {
+font-size: 0.9rem;
+}
+}
+
+/* ============================================
+CELULAR PEQUENO (até 480px)
+============================================ */
+
+@media (max-width: 380px) {
+.header {
+padding: 0.75rem;
+}
+
+.logo {
+font-size: 1.2rem;
+margin-bottom: 0;
+}
+
+.sidebar {
+max-height: 200px;
+}
+
+.panel {
+min-width: 140px;
+}
+
+.button-group {
+gap: 0.3rem;
+}
+
+.btn-icon {
+font-size: 1.2rem;
+padding: 0.4rem;
+}
+
+#canvas {
+width: 100% !important;
+}
+}
+
+/* ============================================
+MODO ESCURO (opcional)
+============================================ */
+
+@media (prefers-color-scheme: dark) {
+:root {
+–color-bg: #121212;
+–color-surface: #1e1e1e;
+–color-border: #333333;
+–color-text: #ffffff;
+–color-text-secondary: #b3b3b3;
+}
+
+.header {
+background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
+}
+
+#canvas {
+background-color: #1a1a1a;
+}
+}
+
+/* ============================================
+IMPRESSÃO
+============================================ */
+
+@media print {
+.header,
+.sidebar,
+.header-nav,
+.modal,
+.canvas-info {
+display: none !important;
+}
+
+#canvas {
+max-width: 100%;
+border: 1px solid #000;
+}
+
+.main-content {
+flex: 1;
+}
+
+body {
+margin: 0;
+padding: 0;
+}
+}
+
+/* ============================================
+ORIENTAÇÃO
+============================================ */
+
+@media (orientation: landscape) and (max-height: 500px) {
+.header {
+padding: 0.5rem 1rem;
+}
+
+.sidebar {
+max-height: 60vh;
+}
+
+.main-content {
+min-height: 400px;
+}
+}
+
+/* ============================================
+TOUCH DEVICES
+============================================ */
+
+@media (hover: none) and (pointer: coarse) {
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-icon:hover {
+background-color: inherit;
+}
+
+.btn-primary:active,
+.btn-secondary:active,
+.btn-icon:active {
+opacity: 0.7;
+}
+
+.results-table tbody tr:hover {
+background-color: inherit;
+}
+
+#canvas {
+cursor: pointer;
+}
+}
+
+/* ============================================
+ACESSIBILIDADE
+============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+- {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  }
+
+.modal {
+animation: none;
+}
+
+.modal-content {
+animation: none;
+}
+}
+
+@media (prefers-contrast: more) {
+:root {
+–color-primary: #0052cc;
+–color-danger: #d9534f;
+–color-success: #398439;
+}
+
+.btn-primary,
+.btn-secondary {
+border-width: 2px;
+}
+}
+
+/* ============================================
+SUPORTE A LANDSCAPE NO CELULAR
+============================================ */
+
+@media (orientation: landscape) {
+.main-layout {
+flex-direction: row;
+}
+
+.sidebar {
+height: 100%;
+flex-direction: column;
+overflow-x: visible;
+overflow-y: auto;
+}
+
+.sidebar-left {
+border-right: 1px solid var(–color-border);
+border-bottom: none;
+}
+
+.sidebar-right {
+border-left: 1px solid var(–color-border);
+border-top: none;
+}
+
+.main-content {
+flex: 1;
+}
+}
+
+/* ============================================
+HIGH DPI / RETINA DISPLAYS
+============================================ */
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+#canvas {
+image-rendering: -webkit-optimize-contrast;
+}
+
+.btn-primary,
+.btn-secondary {
+border-width: 1px;
+}
+}
+
+/* ============================================
+VIEWPORT MÍNIMO
+============================================ */
+
+@media (max-width: 320px) {
+.button-group {
+flex-direction: column;
+}
+
+.btn-structure,
+.btn-tool,
+.btn-support {
+width: 100%;
+}
+
+.sidebar {
+flex-direction: column;
+}
+
+.panel {
+min-width: 100%;
+}
+}
+
+/* ============================================
+ZOOM DO NAVEGADOR
+============================================ */
+
+@media (max-height: 600px) {
+.panel {
+max-height: 45vh;
+overflow-y: auto;
+}
+
+.sidebar-right {
+max-height: 50vh;
+}
+}
+
+/* ============================================
+SCROLLBAR CUSTOMIZADO
+============================================ */
+
+@supports selector(::-webkit-scrollbar) {
+.sidebar::-webkit-scrollbar,
+.results-panel::-webkit-scrollbar {
+width: 6px;
+height: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb,
+.results-panel::-webkit-scrollbar-thumb {
+background: var(–color-primary);
+border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-track,
+.results-panel::-webkit-scrollbar-track {
+background: var(–color-bg);
+}
+}
+
+/* ============================================
+SUPORTE A NOTCH (SafeArea)
+============================================ */
+
+@supports (padding: max(0px)) {
+body {
+padding-left: max(0px, env(safe-area-inset-left));
+padding-right: max(0px, env(safe-area-inset-right));
+padding-top: max(0px, env(safe-area-inset-top));
+padding-bottom: max(0px, env(safe-area-inset-bottom));
+}
+}
