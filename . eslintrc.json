@@ -1,0 +1,107 @@
+// ARQUIVO: .eslintrc.json
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "google"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "globals": {
+    "Constants": "readonly",
+    "MathUtils": "readonly",
+    "Node": "readonly",
+    "Beam": "readonly",
+    "Load": "readonly",
+    "Support": "readonly",
+    "Structure": "readonly",
+    "BeamAnalyzer": "readonly",
+    "FrameAnalyzer": "readonly",
+    "GrillAnalyzer": "readonly",
+    "ArcAnalyzer": "readonly",
+    "CanvasRenderer": "readonly",
+    "DiagramDrawer": "readonly",
+    "Legend": "readonly",
+    "IsostatikaApp": "readonly"
+  },
+  "rules": {
+    "no-console": [
+      "warn",
+      {
+        "allow": [
+          "warn",
+          "error",
+          "info"
+        ]
+      }
+    ],
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "max-len": [
+      "warn",
+      {
+        "code": 100,
+        "ignoreStrings": true,
+        "ignoreComments": true
+      }
+    ],
+    "indent": [
+      "error",
+      2
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "prefer-const": "error",
+    "no-var": "error",
+    "eqeqeq": [
+      "error",
+      "always"
+    ],
+    "curly": "error",
+    "brace-style": [
+      "error",
+      "1tbs"
+    ],
+    "camelcase": "off",
+    "require-jsdoc": "off",
+    "valid-jsdoc": "off"
+  },
+  "overrides": [
+    {
+      "files": [
+        "tests/**/*.js"
+      ],
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ]
+}
