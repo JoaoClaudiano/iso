@@ -1,0 +1,58 @@
+// ARQUIVO: package.json
+{
+“name”: “isoestatica-lab”,
+“version”: “1.0.0”,
+“description”: “Laboratório Virtual de Análise de Estruturas Isostáticas”,
+“main”: “js/app.js”,
+“homepage”: “https://joaoclaudiano.github.io/isoestatica”,
+“repository”: {
+“type”: “git”,
+“url”: “https://github.com/JoaoClaudiano/isoestatica.git”
+},
+“bugs”: {
+“url”: “https://github.com/JoaoClaudiano/isoestatica/issues”
+},
+“author”: “João Claudiano”,
+“license”: “MIT”,
+“keywords”: [
+“isostática”,
+“estruturas”,
+“engenharia”,
+“educacional”,
+“análise estrutural”,
+“vigas”,
+“pórticos”,
+“grelhas”,
+“arcos”
+],
+“scripts”: {
+“start”: “http-server . -p 8000 -c-1 -o”,
+“dev”: “http-server . -p 8000 –cors”,
+“lint”: “eslint js/ –fix”,
+“format”: “prettier –write "js/**/*.js" "css/**/*.css" "docs/**/*.md"”,
+“test”: “jest –passWithNoTests”,
+“test:watch”: “jest –watch”,
+“test:coverage”: “jest –coverage”,
+“test:debug”: “node –inspect-brk node_modules/.bin/jest –runInBand”,
+“build”: “npm run lint && npm run format && npm run test”,
+“docs”: “jsdoc -c jsdoc.json”,
+“clean”: “rm -rf coverage/ dist/ docs/api/”,
+“prebuild”: “npm run clean”,
+“predeploy”: “npm run build”,
+“deploy”: “git push origin gh-pages”
+},
+“devDependencies”: {
+“eslint”: “^8.50.0”,
+“eslint-config-google”: “^0.14.0”,
+“prettier”: “^3.0.0”,
+“jest”: “^29.7.0”,
+“jest-environment-jsdom”: “^29.7.0”,
+“@testing-library/jest-dom”: “^6.1.5”,
+“jsdoc”: “^4.0.2”,
+“http-server”: “^14.1.1”
+},
+“engines”: {
+“node”: “>=14.0.0”,
+“npm”: “>=6.0.0”
+}
+}
