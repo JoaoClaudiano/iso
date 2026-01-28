@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" width="48" height="48">
+  <!-- Arco parabólico -->
+  <path d="M 30 120 Q 100 30 170 120" stroke="#2563eb" stroke-width="10" fill="none" stroke-linecap="round"/>
+  
+  <!-- Apoios -->
+  <circle cx="30" cy="125" r="4" fill="#ef4444"/>
+  <circle cx="170" cy="125" r="4" fill="#ef4444"/>
+  
+  <!-- Carga -->
+  <path d="M 100 25 L 100 35" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="95,25 105,25 100,17" fill="#10b981"/>
+</svg>

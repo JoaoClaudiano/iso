@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="48" height="48">
+  <!-- Círculo central (ponto de aplicação) -->
+  <circle cx="50" cy="50" r="6" fill="#f59e0b" stroke="#d97706" stroke-width="1.5"/>
+  
+  <!-- Seta circular (momento) -->
+  <defs>
+    <marker id="arrowhead-moment" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#f59e0b"/>
+    </marker>
+  </defs>
+  
+  <!-- Arco giratório -->
+  <path d="M 70 50 A 20 20 0 0 1 50 30" stroke="#f59e0b" stroke-width="3" fill="none" marker-end="url(#arrowhead-moment)"/>
+  
+  <!-- Arco secundário (para indicar rotação) -->
+  <path d="M 30 50 A 20 20 0 0 0 50 70" stroke="#fbbf24" stroke-width="2" fill="none" stroke-dasharray="3,3" opacity="0.6"/>
+</svg>
