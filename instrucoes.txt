@@ -1,188 +1,481 @@
-# Isostática Lab - Guia Completo de Setup
+# Isostática Lab - Arquitetura JavaScript Completa
 
-## 📋 Índice
-
-1. [Estrutura de Arquivos Completa](#estrutura-de-arquivos-completa)
-1. [Configuração do Repositório Git](#configuração-do-repositório-git)
-1. [Setup de Desenvolvimento](#setup-de-desenvolvimento)
-1. [Arquivos de Configuração](#arquivos-de-configuração)
-1. [Instruções Passo a Passo](#instruções-passo-a-passo)
-
------
-
-## 📁 Estrutura de Arquivos Completa
+## 📁 Estrutura de Arquivos
 
 ```
-isoestatica/
-│
-├── 📄 index.html                 # Página principal
-├── 📄 404.html                   # Página de erro
-├── 📄 .nojekyll                  # Arquivo para GitHub Pages
-│
-├── 📁 css/
-│   ├── main.css                  # Estilos principais (1200+ linhas)
-│   ├── components.css            # Componentes específicos
-│   └── responsive.css            # Media queries
-│
-├── 📁 js/
-│   ├── 📁 core/
-│   │   ├── Node.js               # ~100 linhas
-│   │   ├── Beam.js               # ~120 linhas
-│   │   ├── Load.js               # ~80 linhas
-│   │   ├── Support.js            # ~60 linhas
-│   │   └── Structure.js          # ~200 linhas
-│   │
-│   ├── 📁 analysis/
-│   │   ├── Solver.js             # Álgebra linear (~300 linhas)
-│   │   ├── BeamAnalyzer.js       # Análise de vigas (~400 linhas)
-│   │   ├── FrameAnalyzer.js      # Análise de pórticos (~400 linhas)
-│   │   ├── GrillAnalyzer.js      # Análise de grelhas (~350 linhas)
-│   │   └── ArcAnalyzer.js        # Análise de arcos (~350 linhas)
-│   │
-│   ├── 📁 visualization/
-│   │   ├── CanvasRenderer.js     # Renderizador (~500 linhas)
-│   │   ├── DiagramDrawer.js      # Desenho de diagramas (~400 linhas)
-│   │   └── Legend.js             # Legendas (~200 linhas)
-│   │
-│   ├── 📁 ui/
-│   │   ├── UIManager.js          # Gerenciador de UI (~300 linhas)
-│   │   ├── ToolPanel.js          # Painel de ferramentas (~150 linhas)
-│   │   └── ResultsPanel.js       # Painel de resultados (~200 linhas)
-│   │
-│   ├── 📁 utils/
-│   │   ├── Constants.js          # ~150 linhas
-│   │   ├── Math.js               # Funções matemáticas (~250 linhas)
-│   │   ├── Export.js             # Exportação (~300 linhas)
-│   │   └── Validation.js         # Validação (~200 linhas)
-│   │
-│   └── app.js                    # App principal (~500 linhas)
-│
-├── 📁 tests/
-│   ├── 📁 core/
-│   │   ├── Node.test.js
-│   │   ├── Beam.test.js
-│   │   ├── Load.test.js
-│   │   ├── Support.test.js
-│   │   └── Structure.test.js
-│   │
-│   ├── 📁 analysis/
-│   │   ├── Solver.test.js
-│   │   ├── BeamAnalyzer.test.js
-│   │   ├── FrameAnalyzer.test.js
-│   │   ├── GrillAnalyzer.test.js
-│   │   └── ArcAnalyzer.test.js
-│   │
-│   └── 📁 utils/
-│       ├── Math.test.js
-│       ├── Export.test.js
-│       └── Validation.test.js
-│
-├── 📁 docs/
-│   ├── README.md                 # Documentação principal
-│   ├── INSTALLATION.md           # Instruções de instalação
-│   ├── USER_GUIDE.md             # Guia de uso do usuário
-│   ├── API.md                    # Referência da API
-│   ├── CONTRIBUTING.md           # Guia para contribuidores
-│   ├── ARCHITECTURE.md           # Arquitetura do projeto
-│   ├── ROADMAP.md                # Roadmap do projeto
-│   └── CHANGELOG.md              # Histórico de mudanças
-│
-├── 📁 examples/
-│   ├── beam-point.json           # Viga com carga pontual
-│   ├── beam-distributed.json     # Viga com carga distribuída
-│   ├── frame-simple.json         # Pórtico simples
-│   ├── grill-square.json         # Grelha quadrada
-│   └── arc-simple.json           # Arco simples
-│
-├── 📁 assets/
-│   └── 📁 icons/
-│       ├── beam.svg
-│       ├── frame.svg
-│       ├── grill.svg
-│       ├── arc.svg
-│       └── ... (outros ícones)
-│
-├── 📄 package.json               # Configuração npm
-├── 📄 .eslintrc.json             # Configuração ESLint
-├── 📄 .prettierrc                # Configuração Prettier
-├── 📄 .gitignore                 # Arquivos ignorados pelo Git
-├── 📄 jest.config.js             # Configuração Jest
-├── 📄 LICENSE                    # Licença MIT
-└── 📄 README.md                  # Readme do repositório
+isoestatica-lab/
+├── src/
+│   ├── core/
+│   │   ├── Node.js              # Classe de nó estrutural
+│   │   ├── Beam.js              # Classe de barra/elemento
+│   │   ├── Load.js              # Classe de carga
+│   │   ├── Support.js           # Classe de apoio
+│   │   └── Structure.js         # Classe da estrutura
+│   ├── analysis/
+│   │   ├── Solver.js            # Solver de equações lineares
+│   │   ├── BeamAnalyzer.js      # Análise de vigas
+│   │   ├── FrameAnalyzer.js     # Análise de pórticos
+│   │   ├── GrillAnalyzer.js     # Análise de grelhas
+│   │   └── ArcAnalyzer.js       # Análise de arcos
+│   ├── visualization/
+│   │   ├── CanvasRenderer.js    # Renderizador principal
+│   │   ├── DiagramDrawer.js     # Desenho de diagramas
+│   │   └── Legend.js            # Sistema de legendas
+│   ├── ui/
+│   │   ├── UIManager.js         # Gerenciador de UI
+│   │   ├── ToolPanel.js         # Painel de ferramentas
+│   │   └── ResultsPanel.js      # Painel de resultados
+│   ├── utils/
+│   │   ├── Constants.js         # Constantes da aplicação
+│   │   ├── Math.js              # Funções matemáticas
+│   │   ├── Export.js            # Exportação de dados
+│   │   └── Validation.js        # Validação de dados
+│   └── app.js                   # Aplicação principal
+├── css/
+│   ├── main.css                 # Estilos principais
+│   ├── components.css           # Componentes
+│   └── responsive.css           # Media queries
+├── tests/
+│   ├── core/
+│   ├── analysis/
+│   └── utils/
+├── docs/
+│   ├── README.md                # Documentação
+│   ├── INSTALLATION.md          # Instalação
+│   ├── USER_GUIDE.md            # Guia do usuário
+│   ├── API.md                   # Documentação da API
+│   └── CONTRIBUTING.md          # Guia de contribuição
+├── examples/
+│   ├── beam-point.json          # Viga com carga pontual
+│   ├── beam-distributed.json    # Viga com carga distribuída
+│   ├── frame-simple.json        # Pórtico simples
+│   └── grill-square.json        # Grelha quadrada
+├── .eslintrc.json               # Configuração ESLint
+├── .prettierrc                  # Configuração Prettier
+├── package.json                 # Dependências
+├── .gitignore                   # Arquivos ignorados
+└── index.html                   # Página principal
 ```
 
 -----
 
-## 🔧 Configuração do Repositório Git
+## 📚 Descrição dos Módulos JavaScript
 
-### .gitignore
+### **CORE (Núcleo da Estrutura)**
 
-```
-# Dependencies
-node_modules/
-package-lock.json
-yarn.lock
+#### `Node.js`
 
-# Environment variables
-.env
-.env.local
-.env.*.local
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.DS_Store
-
-# Build outputs
-dist/
-build/
-*.log
-
-# Coverage
-coverage/
-.nyc_output/
-
-# Test results
-test-results/
+```javascript
+class Node {
+  constructor(id, x, y)
+  setSupport(type)
+  getPosition()
+  isSupported()
+  getDegreesOfFreedom()
+  // Properties: id, x, y, support, reactions, displacements
+}
 ```
 
-### Como Criar o Repositório
+#### `Beam.js`
 
-```bash
-# Inicializar Git
-git init
+```javascript
+class Beam {
+  constructor(id, startNode, endNode)
+  getLength()
+  getAngle()
+  addLoad(load)
+  getLoadsAt(position)
+  // Properties: id, startNode, endNode, loads, internalForces, properties
+}
+```
 
-# Adicionar remote
-git remote add origin https://github.com/JoaoClaudiano/isoestatica.git
+#### `Load.js`
 
-# Criar branch main
-git checkout -b main
+```javascript
+class Load {
+  constructor(type, magnitude, position, direction)
+  getComponents()
+  // Types: 'point', 'distributed', 'moment'
+}
+```
 
-# Adicionar todos os arquivos
-git add .
+#### `Support.js`
 
-# Commit inicial
-git commit -m "Initial commit: Complete Isostática Lab project"
+```javascript
+class Support {
+  constructor(node, type)
+  getRestrictions()
+  // Types: 'pinned', 'roller', 'fixed'
+}
+```
 
-# Push para GitHub
-git push -u origin main
+#### `Structure.js`
 
-# Criar outras branches
-git checkout -b develop
-git push -u origin develop
+```javascript
+class Structure {
+  constructor(type)
+  addNode(x, y)
+  addBeam(startNodeId, endNodeId)
+  addSupport(nodeId, type)
+  addLoad(beamId, load)
+  getStaticDeterminacy()
+  isStaticallyDeterminate()
+  clear()
+  // Types: 'beam', 'frame', 'grill', 'arch'
+}
+```
 
-git checkout -b gh-pages
-git push -u origin gh-pages
+### **ANALYSIS (Análise Estrutural)**
+
+#### `Solver.js`
+
+```javascript
+class Solver {
+  // Métodos de resolução:
+  solveGaussJordan(matrix, vector)
+  solveLU(matrix, vector)
+  invertMatrix(matrix)
+  getDeterminant(matrix)
+  // Álgebra linear para estruturas
+}
+```
+
+#### `BeamAnalyzer.js`
+
+```javascript
+class BeamAnalyzer {
+  analyze(structure)
+  calculateReactions()
+  calculateInternalForces()
+  getShearDiagram()
+  getMomentDiagram()
+  getNormalDiagram()
+}
+```
+
+#### `FrameAnalyzer.js`
+
+```javascript
+class FrameAnalyzer {
+  analyze(structure)
+  buildStiffnessMatrix()
+  applyBoundaryConditions()
+  solveDisplacements()
+  calculateInternalForces()
+}
+```
+
+#### `GrillAnalyzer.js`
+
+```javascript
+class GrillAnalyzer {
+  analyze(structure)
+  calculateBending()
+  calculateTorsion()
+}
+```
+
+#### `ArcAnalyzer.js`
+
+```javascript
+class ArcAnalyzer {
+  analyze(structure)
+  calculatePressureLine()
+  validateArcGeometry()
+}
+```
+
+### **VISUALIZATION (Visualização)**
+
+#### `CanvasRenderer.js`
+
+```javascript
+class CanvasRenderer {
+  constructor(canvas, structure)
+  render()
+  drawBeams()
+  drawNodes()
+  drawSupports()
+  drawLoads()
+  drawDiagrams()
+  worldToScreen(x, y)
+  screenToWorld(x, y)
+  setScale(scale)
+  // Renderiza a estrutura e resultados
+}
+```
+
+#### `DiagramDrawer.js`
+
+```javascript
+class DiagramDrawer {
+  constructor(renderer)
+  drawNormalDiagram(beam)
+  drawShearDiagram(beam)
+  drawMomentDiagram(beam)
+  drawTorsionDiagram(beam)
+  drawDeformedShape(structure)
+  // Desenha diagramas de esforços
+}
+```
+
+#### `Legend.js`
+
+```javascript
+class Legend {
+  constructor(renderer)
+  draw(x, y, type)
+  getScale()
+  setScale(scale)
+}
+```
+
+### **UI (Interface de Usuário)**
+
+#### `UIManager.js`
+
+```javascript
+class UIManager {
+  constructor(app)
+  setupEventListeners()
+  updateStructureInfo()
+  showResults(results)
+  showTutorial()
+  showError(message)
+  // Gerencia toda a UI
+}
+```
+
+#### `ToolPanel.js`
+
+```javascript
+class ToolPanel {
+  constructor(ui)
+  setActiveTool(tool)
+  setupToolButtons()
+  // Painel de ferramentas
+}
+```
+
+#### `ResultsPanel.js`
+
+```javascript
+class ResultsPanel {
+  constructor(ui)
+  displayReactions(reactions)
+  displayInternalForces(forces)
+  displayExtremes(extremes)
+  displayEquations(equations)
+  // Painel de resultados
+}
+```
+
+### **UTILS (Utilitários)**
+
+#### `Constants.js`
+
+```javascript
+// Constantes da aplicação
+const MATERIALS = {
+  steel: { E: 210000, density: 7850 },
+  concrete: { E: 30000, density: 2400 },
+  wood: { E: 12000, density: 600 }
+}
+
+const SUPPORT_TYPES = ['free', 'roller', 'pinned', 'fixed']
+const LOAD_TYPES = ['point', 'distributed', 'moment']
+const STRUCTURE_TYPES = ['beam', 'frame', 'grill', 'arch']
+
+const UI_COLORS = {
+  beam: '#000000',
+  support: '#F44336',
+  load: '#4CAF50',
+  moment: '#FF9800'
+}
+```
+
+#### `Math.js`
+
+```javascript
+// Funções matemáticas
+function distance(p1, p2)
+function angle(p1, p2)
+function rotate(point, angle, origin)
+function getLineIntersection(line1, line2)
+function solveQuadratic(a, b, c)
+function trapezoidalIntegration(values, dx)
+function numericalDerivative(values, dx)
+```
+
+#### `Export.js`
+
+```javascript
+class Exporter {
+  exportJSON(structure, results)
+  exportPDF(structure, results)
+  exportCSV(results)
+  exportImage(canvas)
+}
+```
+
+#### `Validation.js`
+
+```javascript
+class Validator {
+  validateStructure(structure)
+  validateLoads(loads)
+  validateSupports(supports)
+  validateBeamProperties(beam)
+}
+```
+
+### **APP (Aplicação Principal)**
+
+#### `app.js`
+
+```javascript
+class IsostatikaApp {
+  constructor()
+  init()
+  setupUI()
+  setupCanvas()
+  attachEventListeners()
+  
+  // Métodos de modelo
+  addNode(x, y)
+  addBeam(startId, endId)
+  addSupport(nodeId, type)
+  addLoad(beamId, load)
+  deleteElement(id, type)
+  
+  // Métodos de análise
+  analyze()
+  clearResults()
+  
+  // Métodos de UI
+  onToolChanged(tool)
+  onCanvasMouseDown(e)
+  onCanvasMouseMove(e)
+  onCanvasMouseUp(e)
+  
+  // Métodos de exemplos
+  loadExample(exampleName)
+  loadExamples()
+  
+  // Métodos de exportação
+  exportResults()
+  importStructure()
+}
+
+// Instância global
+const app = new IsostatikaApp()
 ```
 
 -----
 
-## 📦 Setup de Desenvolvimento
+## 🔧 Exemplo de Uso
 
-### package.json Completo
+```javascript
+// 1. Criar estrutura
+const structure = new Structure('beam')
+
+// 2. Adicionar nós
+const n0 = structure.addNode(0, 0)
+const n1 = structure.addNode(5, 0)
+const n2 = structure.addNode(10, 0)
+
+// 3. Adicionar barras
+structure.addBeam(0, 1)
+structure.addBeam(1, 2)
+
+// 4. Adicionar apoios
+structure.addSupport(0, 'pinned')
+structure.addSupport(2, 'roller')
+
+// 5. Adicionar cargas
+const load = new Load('point', 10, 2.5, -90)
+structure.beams[0].addLoad(load)
+
+// 6. Analisar
+const analyzer = new StructuralAnalyzer(structure)
+const results = analyzer.analyze()
+
+// 7. Visualizar
+const renderer = new CanvasRenderer(canvas, structure)
+renderer.render()
+
+// 8. Exibir resultados
+console.log('Reações:', results.reactions)
+console.log('Esforços:', results.internalForces)
+```
+
+-----
+
+## 📊 Fluxo de Dados
+
+```
+┌─────────────────┐
+│  User Input     │
+│  (Canvas Click) │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  UIManager      │
+│  (Event Handler)│
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Structure      │
+│  (Data Model)   │
+└────────┬────────┘
+         │
+    ┌────┴─────────────────────┐
+    │                          │
+    ▼                          ▼
+┌─────────────────┐   ┌─────────────────┐
+│ CanvasRenderer  │   │  Analyzer       │
+│ (Visualization) │   │ (Calculations)  │
+└────────┬────────┘   └────────┬────────┘
+         │                     │
+         └──────────┬──────────┘
+                    │
+                    ▼
+            ┌─────────────────┐
+            │  Results Panel  │
+            │ (Display Output)│
+            └─────────────────┘
+```
+
+-----
+
+## 🧪 Testes (Jest)
+
+```javascript
+// tests/core/Beam.test.js
+describe('Beam', () => {
+  test('calculate length correctly', () => {
+    const n1 = new Node(0, 0, 0)
+    const n2 = new Node(1, 3, 4)
+    const beam = new Beam(0, n1, n2)
+    expect(beam.getLength()).toBe(5)
+  })
+})
+
+// tests/analysis/BeamAnalyzer.test.js
+describe('BeamAnalyzer', () => {
+  test('analyze simple beam', () => {
+    // Setup structure
+    // Analyze
+    // Assert results
+  })
+})
+```
+
+-----
+
+## 📝 package.json
 
 ```json
 {
@@ -191,379 +484,41 @@ git push -u origin gh-pages
   "description": "Laboratório Virtual de Análise de Estruturas Isostáticas",
   "main": "js/app.js",
   "scripts": {
-    "start": "http-server . -p 8000 -c-1",
-    "dev": "http-server . -p 8000 --cors",
-    "lint": "eslint js/ --fix",
-    "format": "prettier --write \"js/**/*.js\" \"css/**/*.css\" \"**/*.md\"",
-    "test": "jest --passWithNoTests",
+    "start": "http-server . -p 8000",
+    "lint": "eslint js/",
+    "format": "prettier --write js/ css/",
+    "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "build": "npm run lint && npm run format && npm test",
-    "docs": "jsdoc -c jsdoc.json",
-    "clean": "rm -rf coverage/ dist/ docs/"
+    "build": "echo 'Compilation not required for vanilla JS'",
+    "docs": "jsdoc -c jsdoc.json"
   },
-  "keywords": [
-    "estruturas",
-    "isostática",
-    "engenharia",
-    "educacional",
-    "análise estrutural",
-    "vigas",
-    "pórticos"
-  ],
+  "keywords": ["estructuras", "engenharia", "educacional"],
   "author": "João Claudiano",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/JoaoClaudiano/isoestatica.git"
-  },
-  "bugs": {
-    "url": "https://github.com/JoaoClaudiano/isoestatica/issues"
-  },
-  "homepage": "https://joaoclaudiano.github.io/isoestatica",
   "devDependencies": {
-    "eslint": "^8.50.0",
-    "eslint-config-google": "^0.14.0",
-    "prettier": "^3.0.0",
-    "jest": "^29.7.0",
-    "jsdoc": "^4.0.2",
-    "http-server": "^14.1.1"
+    "eslint": "^8.0.0",
+    "prettier": "^2.8.0",
+    "jest": "^29.0.0",
+    "jsdoc": "^4.0.0",
+    "http-server": "^14.1.0"
   }
 }
 ```
 
-### .eslintrc.json
+-----
 
-```json
-{
-  "env": {
-    "browser": true,
-    "es2021": true,
-    "jest": true
-  },
-  "extends": ["eslint:recommended", "google"],
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module"
-  },
-  "rules": {
-    "no-console": ["warn", { "allow": ["warn", "error"] }],
-    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
-    "max-len": ["warn", { "code": 100 }],
-    "indent": ["error", 2],
-    "semi": ["error", "never"],
-    "quotes": ["error", "single"],
-    "comma-dangle": ["error", "never"],
-    "object-curly-spacing": ["error", "always"],
-    "prefer-const": "error",
-    "no-var": "error"
-  }
-}
-```
+## 🚀 Próximos Passos
 
-### .prettierrc
-
-```json
-{
-  "semi": false,
-  "singleQuote": true,
-  "tabWidth": 2,
-  "trailingComma": "none",
-  "bracketSpacing": true,
-  "arrowParens": "always",
-  "printWidth": 100
-}
-```
-
-### jest.config.js
-
-```javascript
-module.exports = {
-  testEnvironment: 'jsdom',
-  testMatch: ['**/tests/**/*.test.js'],
-  collectCoverageFrom: [
-    'js/**/*.js',
-    '!js/**/*.test.js',
-    '!js/app.js'
-  ],
-  coverageThreshold: {
-    global: {
-      branches: 70,
-      functions: 70,
-      lines: 70,
-      statements: 70
-    }
-  },
-  setupFilesAfterEnv: ['<rootDir>/tests/setup.js']
-}
-```
+1. ✅ Implementar cada classe do módulo `core/`
+1. ✅ Implementar analisadores em `analysis/`
+1. ✅ Criar renderizador em `visualization/`
+1. ✅ Desenvolver UI em `ui/`
+1. ✅ Adicionar testes para cada módulo
+1. ✅ Criar exemplos
+1. ✅ Documentar API
+1. ✅ Deploy no GitHub Pages
 
 -----
 
-## 🔨 Arquivos de Configuração
-
-### jsdoc.json (Para Documentação)
-
-```json
-{
-  "source": {
-    "include": ["js"],
-    "includePattern": ".+\\.js(doc|x)?$",
-    "excludePattern": "(^|\\/|\\\\)_"
-  },
-  "opts": {
-    "destination": "./docs/api",
-    "recurse": true,
-    "readme": "./README.md"
-  },
-  "templates": {
-    "cleverLinks": false,
-    "monospaceLinks": false
-  }
-}
-```
-
-### .editorconfig (Para Consistência)
-
-```
-root = true
-
-[*]
-charset = utf-8
-end_of_line = lf
-insert_final_newline = true
-trim_trailing_whitespace = true
-
-[*.js]
-indent_style = space
-indent_size = 2
-
-[*.css]
-indent_style = space
-indent_size = 2
-
-[*.json]
-indent_style = space
-indent_size = 2
-
-[*.md]
-indent_style = space
-indent_size = 2
-trim_trailing_whitespace = false
-```
-
------
-
-## 📝 Instruções Passo a Passo
-
-### Passo 1: Preparar o Ambiente Local
-
-```bash
-# Criar diretório do projeto
-mkdir isoestatica
-cd isoestatica
-
-# Inicializar Git
-git init
-
-# Criar estrutura de pastas
-mkdir -p {css,js/{core,analysis,visualization,ui,utils},tests/{core,analysis,utils},docs,examples,assets/icons}
-
-# Inicializar npm
-npm init -y
-```
-
-### Passo 2: Instalar Dependências de Desenvolvimento
-
-```bash
-npm install --save-dev eslint eslint-config-google prettier jest jsdoc http-server
-```
-
-### Passo 3: Criar Arquivos de Configuração
-
-Criar os arquivos:
-
-- `.eslintrc.json`
-- `.prettierrc`
-- `.prettierignore`
-- `jest.config.js`
-- `jsdoc.json`
-- `.editorconfig`
-- `.gitignore`
-
-### Passo 4: Criar Arquivos Principais
-
-```bash
-# HTML
-touch index.html 404.html .nojekyll
-
-# CSS
-touch css/main.css css/components.css css/responsive.css
-
-# JS - Core
-touch js/core/{Node,Beam,Load,Support,Structure}.js
-
-# JS - Analysis
-touch js/analysis/{Solver,BeamAnalyzer,FrameAnalyzer,GrillAnalyzer,ArcAnalyzer}.js
-
-# JS - Visualization
-touch js/visualization/{CanvasRenderer,DiagramDrawer,Legend}.js
-
-# JS - UI
-touch js/ui/{UIManager,ToolPanel,ResultsPanel}.js
-
-# JS - Utils
-touch js/utils/{Constants,Math,Export,Validation}.js
-
-# App
-touch js/app.js
-
-# Tests (criar estrutura vazia)
-touch tests/{setup,core/Node.test,core/Beam.test,analysis/Solver.test}.js
-
-# Docs
-touch docs/{README,INSTALLATION,USER_GUIDE,API,CONTRIBUTING,ARCHITECTURE,ROADMAP,CHANGELOG}.md
-
-# Root
-touch LICENSE package.json README.md
-```
-
-### Passo 5: Implementar os Módulos
-
-Seguir a ordem:
-
-1. **Core** (Dados):
-- Constants.js
-- Node.js
-- Load.js
-- Support.js
-- Beam.js
-- Structure.js
-1. **Utils** (Auxiliares):
-- Math.js
-- Validation.js
-- Export.js
-1. **Analysis** (Cálculos):
-- Solver.js
-- BeamAnalyzer.js
-- FrameAnalyzer.js
-- GrillAnalyzer.js
-- ArcAnalyzer.js
-1. **Visualization** (Desenho):
-- CanvasRenderer.js
-- DiagramDrawer.js
-- Legend.js
-1. **UI** (Interface):
-- UIManager.js
-- ToolPanel.js
-- ResultsPanel.js
-1. **App** (Integração):
-- app.js
-
-### Passo 6: Configurar GitHub Pages
-
-```bash
-# Criar branch gh-pages
-git checkout --orphan gh-pages
-
-# Adicionar arquivos
-git add .
-
-# Commit
-git commit -m "Deploy: Initial version"
-
-# Push
-git push -u origin gh-pages
-
-# Voltar para main
-git checkout main
-```
-
-### Passo 7: Configurar GitHub Pages nas Settings
-
-1. Ir em https://github.com/JoaoClaudiano/isoestatica/settings
-1. Procurar por “Pages”
-1. Em “Source”, selecionar “gh-pages”
-1. Salvar
-
-### Passo 8: Desenvolver e Testar
-
-```bash
-# Iniciar servidor
-npm start
-
-# Abrir http://localhost:8000
-
-# Em outro terminal, rodar testes
-npm test
-
-# Validar código
-npm run lint
-
-# Formatar código
-npm run format
-```
-
-### Passo 9: Commit e Push
-
-```bash
-# Ver status
-git status
-
-# Adicionar mudanças
-git add .
-
-# Commit
-git commit -m "Feature: Add [descrição da feature]"
-
-# Push
-git push origin main
-```
-
------
-
-## 🚀 Checklist de Implementação
-
-- [ ] Estrutura de pastas criada
-- [ ] Configuração npm e dependências instaladas
-- [ ] Arquivos de configuração criados (.eslintrc, .prettierrc, etc)
-- [ ] index.html criado
-- [ ] CSS principal criado
-- [ ] Classes core implementadas
-- [ ] Analisadores implementados
-- [ ] Renderizador Canvas implementado
-- [ ] UI Manager implementado
-- [ ] App.js integrado e funcionando
-- [ ] Testes unitários criados
-- [ ] Documentação escrita
-- [ ] GitHub repositório criado
-- [ ] Código pushado
-- [ ] GitHub Pages ativado
-- [ ] Site acessível online
-- [ ] README atualizado
-- [ ] Licença adicionada
-
------
-
-## 📚 Recursos Adicionais
-
-- [MDN Canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
-- [MDN JavaScript Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
-- [Jest Documentation](https://jestjs.io/docs/getting-started)
-- [ESLint Guide](https://eslint.org/docs/user-guide)
-
------
-
-## ⚠️ Dicas Importantes
-
-1. **Sempre commitar frequentemente** com mensagens descritivas
-1. **Testar localmente** antes de fazer push
-1. **Rodar linter e formatar** antes de commits
-1. **Manter documentação atualizada**
-1. **Usar semantic versioning** (1.0.0, 1.1.0, 2.0.0)
-1. **Escrever testes** para novas funcionalidades
-1. **Code review** antes de merge para main
-
------
-
-Este guia completo deve permitir que você recrie todo o projeto profissionalmente!
+Esta arquitetura fornece uma base sólida, escalável e profissional para o projeto.
