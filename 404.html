@@ -1,0 +1,73 @@
+<!-- ARQUIVO: 404.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página não encontrada - Isostática Lab</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .error-container {
+            text-align: center;
+            color: white;
+            padding: 2rem;
+        }
+        .error-code {
+            font-size: 6rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        .error-message {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+        .error-description {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin: 1rem 0 2rem 0;
+        }
+        .error-button {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background-color: white;
+            color: #2196F3;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .error-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-message">Página não encontrada</h2>
+        <p class="error-description">
+            A página que você está procurando pode ter sido removida, 
+            renomeada ou está temporariamente indisponível.
+        </p>
+        <a href="/" class="error-button">🏠 Voltar ao Início</a>
+    </div>
+
+    <script>
+        // Redirecionar para a página principal após 5 segundos
+        // (opcional - remova se preferir)
+        // setTimeout(() => {
+        //     window.location.href = '/'
+        // }, 5000)
+    </script>
+</body>
+</html>
