@@ -1,0 +1,7 @@
+{
+  "type": "arc",
+  "span": 10,
+  "rise": 3,
+  "supports": ["pinned", "pinned"],
+  "load": { "type": "distributed", "value": 1 }
+}
