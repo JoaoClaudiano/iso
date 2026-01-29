@@ -143,7 +143,7 @@ python -m http.server 8000
 
 ```
 isoestatica/
-├── src/
+├── js/
 │   ├── core/              # Classes de modelo de dados
 │   │   ├── Node.js        # Nó estrutural
 │   │   ├── Beam.js        # Barra/elemento
