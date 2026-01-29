@@ -1,0 +1,11 @@
+{
+  "type": "beam",
+  "length": 6,
+  "supports": [
+    { "position": 0, "type": "pinned" },
+    { "position": 6, "type": "roller" }
+  ],
+  "loads": [
+    { "type": "point", "value": 10, "position": 3 }
+  ]
+}
